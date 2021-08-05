@@ -1,12 +1,11 @@
-function getAllLink(){
-    var links[] = getlinks();
-    writeLinks(links)
-}
+chrome.tabs.query( {active:true, currentWindow:true}, function(tabs){
+    chrome.tabs.sendMessage(tabs[0].id, {message: 'getLinks'}, function(links){
+        writeLinks(links);
+    });
+});
 
-function getlinks(){
-    alert("tset");
-}
-
-function writeLinks(links){
-    alert("fuga");
-}
+$(function writeLinks(links) {
+    links.forEach(function (link) {
+        $('url').append(link);
+    })
+});
