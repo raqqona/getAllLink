@@ -3,12 +3,21 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     sendResponse(links);
 });
 
-$(function getlinks() {
-    var link_links = $('link').attr('href');
-    var a_links = $('a').attr('href');
-    var input_links = $('input').attr('href');
-    var button_links = $('button').attr('href');
-    var links = link_links.concat(a_links, input_links , button_links);
+function getlinks() {
+    var links = [];
+
+    $("link").each(function(){
+        links.push($(this).prop('href'));
+    });
+    $("a").each(function(){
+        links.push($(this).prop('href'));
+    });
+    $("input").each(function(){
+        links.push($(this).prop('href'));
+    });
+    $("button").each(function(){
+        links.push($(this).prop('href'));
+    });
 
     return links;
-});
+};
